@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+//引入MINT-UI插件
+import { Header } from 'mint-ui';
+Vue.component(Header.name, Header);
 
 Vue.config.productionTip = false
 
