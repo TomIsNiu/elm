@@ -2,25 +2,26 @@
   <div id="div1">
     <div id="header">
     <span id="span1">ele.me</span>
-    <a href="###" id="a1">登录/注册</a>
+    <router-link id="a1" :to="{patn:'/'}">登录/注册</router-link>
   </div>
     <div id="headernext">
-    <div id="headernext1">
-      <span id="span2">当前定位城市：</span>
-      <span id="span3">定位不准时，请在城市列表中选择</span>
-    </div>
+      <div id="headernext1">
+        <span id="span2">当前定位城市：</span>
+        <span id="span3">定位不准时，请在城市列表中选择</span>
+      </div>
     <a href="###" id="headernext2"></a>
   </div>
-    <div id="hotcity">
-    <div class="p1">热门城市</div>
-    <ul class="ul1">
-      <li v-for="(p,i) in hotCityObj" :key="i">{{p.name}}</li>
-    </ul>
-  </div>
+    <div class="hotCity">
+      <div class="p1">热门城市</div>
+      <ul class="ul1">
+        <li v-for="(p,i) in hotCityObj" :key="i"><router-link :to="{name:'aa',params:{id:p.id,city:p.name}}">{{p.name}}</router-link></li>
+      </ul>
+    </div>
     <div class="azcity" v-for="(p,i) in azArr" :key="i">
     <div class="p1">{{p}}</div>
-    <ul class="ul1">
-      <li v-for="(m,j) in overCityObj[p]" :key="j">{{m.name}}</li>
+    <ul class="ul2">
+      <li v-for="(m,j) in overCityObj[p]" :key="j">
+        <router-link :to="{name:'aa',params:{id:p.id,city:m.name}}">{{m.name}}</router-link></li>
     </ul>
   </div>
   </div>
@@ -28,7 +29,7 @@
 
 <script>
     export default {
-        name: "new",
+      name: "new",
       data(){
         return {
           hotCityObj:[],
@@ -60,10 +61,12 @@
   }
   #header{
     width: 100%;
-    height: 7%;
+    height: 2.2rem;
     background: #3190E8;
     color: white;
-    border-bottom: 0.05rem solid #999999;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   #span1{
     display: inline-block;
@@ -80,15 +83,21 @@
   }
   #headernext{
     width: 100%;
-    height: 12%;
+    height: 4rem;
     background: white;
-    margin-bottom: 0.6rem;
-    border-bottom: 0.05rem solid #999999;
+    margin:2.2rem 0 0 0;
   }
   #headernext1{
     width: 100%;
-    height: 50%;
-    border-bottom: 0.05rem solid #999999;
+    height: 2.2rem;
+    border-bottom:0.05rem solid #E4E4E4;
+
+  }
+  #headernext2{
+    width: 100%;
+    height: 1.8rem;
+    display: inline-block;
+    border-bottom:0.05rem solid #E4E4E4;
   }
   #span2{
     display: inline-block;
@@ -103,42 +112,48 @@
     float:right;
     margin: 0.8rem 0.5rem 0 0;
   }
-  #hotcity{
+  .hotCity{
     width: 100%;
-    height: 18.2%;
     background: white;
-    margin-bottom: 0.6rem;
+    margin:0.6rem 0 0 0;
   }
   .p1{
     width: 100%;
-    height: 28%;
+    height: 1.4rem;
     color: #666666;
     font-size: 0.8rem;
     padding: 0.3rem 0 0 0.5rem;
     /*margin: 0.5rem 0 0 0.5rem;*/
-    border-top:0.05rem solid #999999;
+    border-top:0.05rem solid #E4E4E4;
   }
-  .ul1{
+  .ul1,.ul2{
     width: 100%;
-    height: 64.8%;
-    border: 0.05rem solid #999999;
     display: flex;
     flex-wrap:wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
   }
-  .ul1>li {
+  .ul1>li>a{
+    color: #3190e8;
+  }
+  .ul2>li>a{
+    color: #666666;
+  }
+  .ul1>li,.ul2>li{
     box-sizing: border-box;
     display: inline-block;
     width: 25%;
-    height: 50%;
+    height: 1.9rem;
     border: 0.05rem solid #E4E4E4;
     text-align: center;
     line-height: 1.64rem;
     font-size: 0.7rem;
-    color: #57A4EC;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .azcity{
+    width: 100%;
+    margin-top: 0.6rem;
+    background: white;
   }
 </style>

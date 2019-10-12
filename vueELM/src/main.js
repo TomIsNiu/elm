@@ -8,18 +8,16 @@ import router from './router'
 import { Header ,Button} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
-
-
 Vue.config.productionTip = false
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+axios.defaults.withCredentials =true;
 Vue.use(VueAxios, axios)
 
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/dist/css/swiper.css'
-// Vue.use(VueAwesomeSwiper)
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 /* eslint-disable no-new */
 new Vue({
