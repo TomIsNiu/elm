@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 //引入MINT-UI插件  npm i mint-ui -S
 //按需导入时 需到.babelrc里面添加component ,然后终端安装插件npm install babel-plugin-component -D
+
 import { Header ,Button} from 'mint-ui';
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
@@ -18,8 +19,21 @@ Vue.use(VueAxios, axios)
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
+//引入http.js
+import  myHttp from "./axios/http"
+//将自定义的网络请求对象赋值给Vue构造函数的原型对象,这样当前项目的任何一个地方只要能获取到vue实例，就可以发起自定义的网络请求
+Vue.prototype.myHttp=myHttp;
+// import Vant from 'vant';
+import 'vant/lib/index.css';
+//
+// Vue.use(Vant)
+import { CountDown } from 'vant';
 
+Vue.use(CountDown);
 
+import { RadioGroup, Radio } from 'vant';
+Vue.use(RadioGroup);
+Vue.use(Radio);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
