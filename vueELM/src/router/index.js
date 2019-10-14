@@ -7,9 +7,13 @@ import aShop from '../components/aShop'
 import aShopFood from '../components/aShopFood'
 import aPingJia from '../components/apingjia'
 
-// import bMine from '../components/bMine'
-// import bDeng from '../components/bDeng'
-// import bXiu from '../components/bXiu'
+import bMine from '../components/bMine'
+import bDeng from '../components/bDeng'
+import bXiu from '../components/bXiu'
+import bPath from '../components/bPath'
+import bAddress from '../components/bAddress'
+import bSou from '../components/bSou'
+import bAccount from '../components/bAccount'
 
 // import CeleAPP from '../components/CeleAPP'
 // import  Cserver from '../components/Cserver'
@@ -67,6 +71,13 @@ export default new Router({
         {path:'/ashopfood', component:aShopFood,name:'aca'},
         {path:'/apingjia', component:aPingJia,name:'acb'},
       ]},
+    {path:'/bMine',component:bMine,name:'bMin'},
+    {path:'/bDeng',component: bDeng},
+    {path:'/bXiu',component:bXiu},
+    {path:'/bPath',component:bPath},
+    {path:'/bAddress',component: bAddress},
+    {path:'/bSou',component:bSou},
+    {path:'/bAccount',component:bAccount},
 
     // {path:'/bMine',component:bMine},
     // {path:'/bDeng',component: bDeng},
