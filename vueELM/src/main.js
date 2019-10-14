@@ -19,6 +19,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

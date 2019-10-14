@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import   "..de_modules/bootstrap/dist/css/bootstrap.css";
+  // import   "..de_modules/bootstrap/dist/css/bootstrap.css";
   export default {
     name: 'App',
   }

@@ -41,9 +41,7 @@
       },
       methods:{
         rqInfo(){
-          let infodz=this.dt + this.city[0] + "&keyword=" + this.inputInfo;
-          console.log(infodz);
-          this.axios.get(infodz,).then((p)=>{
+          this.axios.get(this.dt + this.city[0] + "&keyword=" + this.inputInfo).then((p)=>{
             this.sshistory=p.data;
             console.log(this.sshistory);
           });

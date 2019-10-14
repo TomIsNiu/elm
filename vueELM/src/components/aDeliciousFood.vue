@@ -2,7 +2,7 @@
     <div class="div1">
       <div class="header">
         <a href="#" class="a1"><img src="../assets/sousuo.png" alt=""></a>
-        <p>{{lastInfo[0]}}</p>
+        <p>{{diquInfo.name}}</p>
         <a href="#" class="a2"><img src="../assets/touxinag.png" alt=""></a>
       </div>
       <div class="swiper-container foodsort">
@@ -33,22 +33,36 @@
           <span>附近商家</span>
         </div>
         <ul>
-          <li>
-            <a href="#" class="a5">
-              <img src="../assets/touxinag.png" alt="">
+          <li v-for="(p,i) in shopListInfo" :key="i">
+            <router-link class="a5" :to="{name:'ac',params:{id:p.id,latitude:p.latitude,longitude:p.longitude}}">
+              <img :src=imgUrl+p.image_path alt="">
               <div class="rights">
                 <div class="up">
-                  <span>品牌</span>
-                  <div class="xgys">效果演示</div>
-                  <div class="bzp">
+                  <div class="upleft">
+                    <span class="pp">品牌</span>
+                    <span class="ppname">{{p.name}}</span>
+                  </div>
+                  <div class="upright" >
+                    <span>{{p.supports[0].icon_name}}</span>
+                    <span>{{p.supports[1].icon_name}}</span>
                     <span>票</span>
-                    <span>准</span>
-                    <span>保</span>
                   </div>
                 </div>
-                <div class="center"></div>
+                <div class="center">
+                  <van-rate v-model="p.rating" size="0.5rem" gutter="0.05rem" allow-half  readonly/><span>{{p.rating}}</span><span>月售{{p.recent_order_num}}单</span>
+                  <div class="centerRight">
+                    <span class="fnzs">{{p.delivery_mode.text}}</span>
+                    <span class="zsd">{{p.supports[1].name}}</span>
+                  </div>
+                  <div class="down">
+                    <span>￥{{p.float_minimum_order_amount}}起送 / 配送费约￥{{p.float_delivery_fee}}</span>
+                    <span class="time">{{p.order_lead_time}}</span>
+                    <span class="jl">{{p.distance}} /</span>
+                  </div>
+                </div>
               </div>
-            </a>
+              <div class="qf"></div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -58,6 +72,7 @@
 <script>
   import Swiper from 'swiper'
   import "../../node_modules/swiper/css/swiper.css"
+
     export default {
       name: "aDeliciousFood",
       data(){
@@ -76,6 +91,10 @@
           lastInfo:[],
           diqu:'http://elm.cangdu.org/v2/pois/',
           diquInfo:[],
+          value:3,
+          shopUrl:'https://elm.cangdu.org/shopping/restaurants?latitude=',
+          shopListInfo:[],
+          imgUrl:'https://elm.cangdu.org/img/'
         }
       },
       computed:{
@@ -100,22 +119,27 @@
           this.foodArr1=Arr.splice(0,8);
           this.foodArr2=Arr.splice(0,8);
         })
-        let onedz='http://elm.cangdu.org/v2/pois/31.143657,121.660764'
+        // let onedz='http://elm.cangdu.org/v2/pois/31.143657,121.660764'
         this.axios.get(this.diqu + this.lastInfo[1] + ',' + this.lastInfo[2]).then((p)=>{
-          console.log(p.data);
           this.diquInfo=p.data;
-          console.log(this.diquInfo)
+        })
+
+        //https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762
+        this.axios.get(this.shopUrl + this.lastInfo[1] + '&longitude=' + this.lastInfo[2]).then((p)=>{
+          this.shopListInfo=p.data;
+          console.log(this.shopListInfo);
         })
       }
     }
 </script>
 
 <style scoped>
+  .qf{
+    clear: none;
+  }
   .div1{
     width: 100%;
     height: 100%;
-    position: relative;
-    width: 100%;
   }
   .header{
     width: 100%;
@@ -125,7 +149,7 @@
     text-align: center;
     position: fixed;
     top: 0;
-    left: 0;
+
   }
   .a1{
     display: inline-block;
@@ -179,6 +203,7 @@
   }
   .ul1{
     height: 10rem;
+    overflow: hidden;
   }
   .ul2{
     height: 10rem;
@@ -205,12 +230,12 @@
   }
   .foods>ul{
     width: 100%;
-    height: 5rem;
-    padding: 0.75rem 0.5rem;
+    overflow: hidden;
   }
   .foods>ul>li{
     width: 100%;
     height: 5rem;
+    border-bottom: 0.05rem solid #e4e4e4;
   }
   .a5{
     display: inline-block;
@@ -219,52 +244,82 @@
   }
   .a5>img{
     float: left;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 20%;
+    margin: 0.75rem 0 0 0.5rem;
   }
   .rights{
-    width: 80%;
+    width: 75%;
     display: inline-block;
     float: left;
-    margin-left:0.2rem;
+    margin:0.5rem 0 0 0.2rem;
   }
   .up{
     width: 100%;
+    display: flex;
+    justify-content:space-between;
   }
-  .up>span{
+  .pp{
     background: #ffd930;
     color: #333;
     font-size: 0.5rem;
     margin-right: 0.25rem;
     padding: 0 0.1rem;
   }
-  .xgys{
+  .ppname{
     display: inline-block;
     font-size: 0.75rem;
     color: #333;
     padding-top: 0.1rem;
   }
-  .bzp{
-    display: inline-block;
+  .upright{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-end;
     color: #999;
     font-size: 0.6rem;
-    padding: 0 0.05rem;
-    float: right;
+    padding: 0.1rem 0.05rem;
   }
-  .bzp>span{
-    float: right;
+
+  .upright>span{
+
     border: 0.05rem solid #f1f1f1;
     margin-left: 0.05rem;
 
   }
+  .center{
+    font-size: 0.5rem;
+    color: #333333;
+    margin-top: 0.6rem;
+  }
+  .centerRight{
+    display: inline-block;
+    float: right;
+  }
+  .fnzs{
+    background: #3190e8;
+    border-radius: 0.1rem;
+    color: white;
+  }
+  .zsd{
+    color: #3190e8;
+    font-size: 0.6rem;
+    margin-left: 0.1rem;
+    border:0.05rem solid #3190e8;
+  }
+  .down{
+    font-size: 0.6rem;
+    margin-top: 0.6rem;
+    color: #333333;
+  }
+  .jl{
+    color: #999999;
+    float: right;
+  }
+  .time{
+    color: #3190e8;
+    float: right;
+  }
 
-  /* <div class="up">
-        <span>品牌</span>
-        <h4>效果演示</h4>
-        <div>
-            <span>保</span>
-            <span>准</span>
-            <span>票</span>
-         </div>
-      </div>*/
+
+
 </style>
