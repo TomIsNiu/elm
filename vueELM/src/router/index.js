@@ -62,6 +62,7 @@ export default new Router({
         {path:'/ashopfood', component:aShopFood,name:'aca'},
         {path:'/apingjia', component:aPingJia,name:'acb'},
       ]},
+
     {path:'/bMine',component:bMine,name:'bMin'},
     {path:'/bDeng',component: bDeng},
     {path:'/bXiu',component:bXiu},
@@ -69,6 +70,7 @@ export default new Router({
     {path:'/bAddress',component: bAddress},
     {path:'/bSou',component:bSou},
     {path:'/bAccount',component:bAccount},
+    
     {path: '/cele',component:CeleAPP},//跳转到下载App页面
     {path: '/cserver',component:Cserver},//服务中心页面
     {path:'/ccon',component:Ccon},//服务中心页面跳转的组件

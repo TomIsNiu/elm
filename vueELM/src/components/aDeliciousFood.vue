@@ -66,6 +66,21 @@
           </li>
         </ul>
       </div>
+      <ul class="bottoms">
+        <li><a href="#">
+          <i class='iconfont icon-changyonglogo40' style="color:#1296db"></i>
+          <p>外卖</p>
+        </a></li>
+        <li><a href="#">
+          <i class='iconfont icon-zhizhen-' style="color:#707070"></i>          <p>搜索</p>
+        </a></li>
+        <li><a href="#">
+          <i class='iconfont icon-dingdan' style="color:#707070"></i>          <p>订单</p>
+        </a></li>
+        <li><a href="#">
+          <i class='iconfont icon-wode' style="color:#707070"></i>          <p>我的</p>
+        </a></li>
+      </ul>
     </div>
 </template>
 
@@ -77,6 +92,7 @@
       name: "aDeliciousFood",
       data(){
         return {
+          bottomimgs:["iconfont icon-dingdan-copy","icon-zhizhen","icon-dingdan","iconfont icon-weibiaoti-"],
           foodArr1:[],
           foodArr2:[],
           urlArr:'https://fuss10.elemecdn.com',
@@ -103,7 +119,7 @@
       mounted(){
         var mySwiper = new Swiper ('.swiper-container', {
           direction: 'horizontal',
-          loop: true, // 循环模式选项
+          loop: false, // 循环模式选项
           // 如果需要分页器
           pagination: {
             el: '.swiper-pagination',
@@ -134,6 +150,14 @@
 </script>
 
 <style scoped>
+ @import "//at.alicdn.com/t/font_1458386_a56xsq2yobq.css";
+ /* 订单  icon-dingdan*/
+ @import "//at.alicdn.com/t/font_1458391_gdd0c3o4ubn.css";
+ /* 搜索 icon-zhizhen-*/
+ @import "//at.alicdn.com/t/font_1458402_hsnv6u602e.css";
+ /* 我的 icon-wode*/
+ @import "//at.alicdn.com/t/font_1458410_e5oj2suzhd.css"
+ /* 外卖 icon-changyonglogo40  */;
   .qf{
     clear: none;
   }
@@ -319,7 +343,30 @@
     color: #3190e8;
     float: right;
   }
-
+  .bottoms{
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    position: fixed;
+    bottom:-0.05rem;
+    background: white;
+  }
+  .bottoms>li{
+    width: 25%;
+  }
+  .bottoms>li>a{
+    display: inline-block;
+    width: 100%;
+  }
+ .bottoms>li>i{
+   font-size: 1rem;
+ }
+  .bottoms>li>a>p{
+    font-size: 0.6rem;
+    color: #666666;
+  }
 
 
 </style>
