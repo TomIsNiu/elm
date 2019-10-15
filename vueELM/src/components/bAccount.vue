@@ -43,7 +43,7 @@
           </div>
         </router-link>
         <div class="bang">安全设置</div>
-        <div class="yong" @click="yins">
+        <router-link :to="{path:'/bXiu'}" class="yong">
           <div class="bao">
             <div class="yon">登陆密码</div>
             <div class="huo">
@@ -51,8 +51,8 @@
               <i class="iconfont icon-youjian" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
             </div>
           </div>
-        </div>
-        <button type="button" class="btn btn-default btn-lg btn-block">登陆</button>
+        </router-link>
+        <button type="button" class="btn btn-default btn-lg btn-block">退出登陆</button>
         <div class="btan" v-if="p">
           <div class="btan1">
             <span class="btan2"></span>
@@ -164,9 +164,8 @@
     color: #999;
   }
   .bao{
-    margin: 0;
     margin-top: .4rem;
-    padding: .5rem .4rem;
+    padding-left:  .4rem;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
@@ -182,11 +181,13 @@
   }
   .aa{
     padding-right: 0.5rem;
+    margin-top: 0.3rem;
   }
   .yon{
     color: black;
-    padding-top: 0.5rem;
-    padding-top: .2rem ;
+    font-size: .8rem;
+    padding-top: 0.6rem;
+
   }
   .huo{
     display: flex;
@@ -199,18 +200,19 @@
   }
   .di{
     margin-top: 0;
-    padding: .5rem .4rem;
+    padding: .4rem 0.3rem;
     display: flex;
     justify-content: space-between;
     border-top: 1px solid #ddd;
     background: #fff;
   }
   .stree{
-    font-size: .9rem;
-    color: #333;
+    font-size: .8rem;
+    color: black;
     font-weight: 500;
     display: flex;
     align-items: center;
+    padding-top: 0.3rem;
   }
   .bang{
     padding: .4rem;
@@ -224,9 +226,14 @@
     color: black;
   }
   .btn{
-    background-color:#4cd964;
+    background-color:#d8584a;
     width: 90%;
+    height: 2rem;
     margin: 1.5rem auto;
+    font-size: .8rem;
+    color:white;
+    padding-bottom: 1.5rem;
+
   }
   .btan{
     position: absolute;

@@ -2,7 +2,7 @@
   <div id="div1">
     <div id="header">
     <span id="span1">ele.me</span>
-    <router-link id="a1" :to="{patn:'/'}">登录/注册</router-link>
+    <router-link id="a1" :to="{path:'/bDeng'}">登录/注册</router-link>
   </div>
     <div id="headernext">
       <div id="headernext1">

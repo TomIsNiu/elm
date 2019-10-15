@@ -10,17 +10,17 @@
        <span id="bs"><img src="../assets/phone.png" alt="" style="width: 1.2rem; margin-top: 2.7rem"><span>暂无绑定手机号</span></span>
        <span id="by"> > </span>
      </router-link>
-      <div>
+      <div style="background-color: white">
         <ul class="bclear">
-          <router-link :to="{path:'/'}"><li class="bli">
+          <router-link :to="{path:'/cbalance'}"><li class="bli">
             <span class="bwei"><span class="bnumber1">0.00</span>分</span>
             <span class="bxia">我的余额</span>
           </li></router-link>
-          <router-link :to="{path:'/'}"><li class="bli">
+          <router-link :to="{path:'/cdiscounts'}"><li class="bli">
             <span class="bwei"><span class="bnumber2">3</span>个</span>
             <span class="bxia">我的优惠</span>
           </li></router-link>
-          <router-link :to="{path:'/'}"><li class="bli blis">
+          <router-link :to="{path:'/jifen'}"><li class="bli blis">
             <span class="bwei"><span class="bnumber3">0</span>分</span>
             <span class="bxia">我的积分</span>
           </li></router-link>
@@ -30,22 +30,22 @@
         <ul>
           <li class="bzz">
            <router-link :to="{path:'/'}">
-             <i class="iconfont icon-dingdan" style="color: #666"></i>
-             <span>我的订单</span>
+             <i class="iconfont icon-dingdan" style="color: #666;font-size: 1rem"></i>
+             <span style="font-size: 0.9rem">我的订单</span>
              <span class="byou"> > </span>
            </router-link>
           </li>
           <li class="bzz">
-            <router-link :to="{path:'/'}">
-              <i class="iconfont icon-shangchang1" style="color: orange"></i>
-              <span>积分商城</span>
+            <router-link :to="{path:'/cintegral'}">
+              <i class="iconfont icon-shangchang1" style="color: orange ;font-size: 0.7rem"></i>
+              <span style="font-size: 0.9rem">积分商城</span>
               <span class="byou"> > </span>
             </router-link>
           </li>
           <li class="bzz">
-            <router-link :to="{path:'/'}">
-              <i class="iconfont icon-huangguan" style="color: orange"></i>
-              <span>饿了么会员卡</span>
+            <router-link :to="{path:'/cmembercenter'}">
+              <i class="iconfont icon-huangguan" style="color: orange;font-size: 0.9rem"></i>
+              <span style="font-size: 0.9rem">饿了么会员卡</span>
               <span class="byou"> > </span>
             </router-link>
           </li>
@@ -54,16 +54,16 @@
       <div class="bding">
         <ul>
           <li class="bzz">
-            <router-link :to="{path:'/'}">
-              <i class="iconfont icon-fu_wu_zhong_xin" style="color: #666"></i>
-              <span>服务中心</span>
+            <router-link :to="{path:'/cserver'}">
+              <i class="iconfont icon-fu_wu_zhong_xin" style="color: #666;font-size: 0.8rem"></i>
+              <span style="font-size: 0.9rem">服务中心</span>
               <span class="byou"> > </span>
             </router-link>
           </li>
           <li class="bzz">
-            <router-link :to="{path:'/'}">
-              <i class="iconfont icon-eliaomo" style="color: orange"></i>
-              <span>下载饿了么APP</span>
+            <router-link :to="{path:'/cele'}">
+              <i class="iconfont icon-eliaomo" style="color: orange;font-size: 0.8rem"></i>
+              <span style="font-size: 0.9rem">下载饿了么APP</span>
               <span class="byou"> > </span>
             </router-link>
           </li>
@@ -163,7 +163,11 @@ position: absolute;
     overflow: hidden;
     text-align: center;
     width: 100%;
-    background-color: azure;
+    background-color:white;
+  }
+  .bxia{
+    font-size: 0.8rem;
+    color: #666;
   }
   .bli{
     float: left;
@@ -197,7 +201,8 @@ position: absolute;
     padding-bottom: 0.3rem;
   }
   .bding{
-    margin: 1rem 0;
+    margin-top: 0.5rem;
+    background-color: white;
   }
   .bzz{
     border-bottom: 0.01rem solid #999;
