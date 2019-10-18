@@ -9,7 +9,6 @@
         <span id="span2">当前定位城市：</span>
         <span id="span3">定位不准时，请在城市列表中选择</span>
       </div>
-    <a href="###" id="headernext2"></a>
   </div>
     <div class="hotCity">
       <div class="p1">热门城市</div>
@@ -121,8 +120,7 @@
     height: 1.4rem;
     color: #666666;
     font-size: 0.8rem;
-    padding: 0.3rem 0 0 0.5rem;
-    /*margin: 0.5rem 0 0 0.5rem;*/
+    padding: 0.1rem 0 0 0.5rem;
     border-top:0.05rem solid #E4E4E4;
   }
   .ul1,.ul2{

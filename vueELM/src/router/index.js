@@ -6,6 +6,9 @@ import aDeliciousFood from '../components/aDeliciousFood'
 import aShop from '../components/aShop'
 import aShopFood from '../components/aShopFood'
 import aPingJia from '../components/apingjia'
+import aTakeOut from '../components/aTakeOut'
+import aSortShop from '../components/aSortShop'
+import aSearch from '../components/aSearch'
 
 import bMine from '../components/bMine'
 import bDeng from '../components/bDeng'
@@ -20,16 +23,6 @@ import bSdiz from '../components/bSdiz'
 Vue.use(Router)
 //引入swiper
 
-import Vant from 'vant';
-import 'vant/lib/index.css';
-Vue.use(Vant);
-
-import { Rate } from 'vant';
-Vue.use(Rate);
-import { Sidebar, SidebarItem } from 'vant';
-
-Vue.use(Sidebar);
-Vue.use(SidebarItem);
 import CeleAPP from '../components/Cmy/CeleAPP'
 import  Cserver from '../components/Cmy/Cserver'
 import Ccon from '../components/Cmy/Ccon'
@@ -55,23 +48,44 @@ import Cconfirm from '../components/Cmy/Cconfirm'
 import  COrderComment from '../components/Cmy/COrderComment'
 import  Cinvoice from '../components/Cmy/Cinvoice'
 Vue.use(Router)
-
+//引入Vant
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+//引入vant评分
+import { Rate } from 'vant';
+Vue.use(Rate);
+//引入vant侧边导航
+import { Sidebar, SidebarItem } from 'vant';
+Vue.use(Sidebar);
+Vue.use(SidebarItem);
+//引入下拉菜单
+import { DropdownMenu, DropdownItem } from 'vant';
+Vue.use(DropdownMenu).use(DropdownItem);
 //引入vant
 import { CouponCell, CouponList } from 'vant';
-
 Vue.use(CouponCell).use(CouponList);
 
+
+//路由
+Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/',redirect:'/afirst'},
     {path:'/afirst',component:aFirst},
     {path:'/aseachcity',component:aSeachCity,name:'aa'},
-    {path:'/adeliciousfood',component:aDeliciousFood,name:'ab'},
-    {path:"/ashop",component:aShop,name:'ac',children: [
-        {path:"/ashop",redirect:'ashopfood'},
-        {path:'/ashopfood', component:aShopFood,name:'aca'},
-        {path:'/apingjia', component:aPingJia,name:'acb'},
+    {path:'/adeliciousfood',component:aDeliciousFood,children: [
+        {path:"",redirect:'atakeout'},
+        {path:"atakeout",component:aTakeOut},
+        {path:'asearch',component:aSearch},
+
       ]},
+    {path:"/ashop",component:aShop,children:[
+        {path:"",redirect:'ashopfood'},
+        {path:"ashopfood",component:aShopFood},
+        {path:"apingjia",component:aPingJia},
+      ]},
+    {path:"/asortshop",component:aSortShop},
 
     {path:'/bMine',component:bMine,name:'bMin'},
     {path:'/bDeng',component: bDeng},
@@ -83,7 +97,6 @@ export default new Router({
     {path:'/bDizhi',component:bDizhi},
     {path:'/bSdiz',component:bSdiz,name:'bb',meta:{keepAlive: true}},
     {path:'/bSou',component:bSou,meta:{keepAlive: false}},
-
 
     {path: '/cele',component:CeleAPP},//跳转到下载App页面
     {path: '/cserver',component:Cserver},//服务中心页面

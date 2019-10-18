@@ -1,9 +1,9 @@
 <template>
     <div class="div1" :style="{background:'url(' + imgUrl+shopInfo.image_path + ') center top no-repeat / cover'}">
       <div class="header">
-        <a href="#" class="a1">
+        <router-link class="a1" :to="{path:'/adeliciousfood'}">
           <img src="../assets/Alleftpoint.png" alt="" class="img1">
-        </a>
+        </router-link>
         <a href="#" class="a2">
           <img :src=imgUrl+shopInfo.image_path alt="" class="img2">
           <div class="headRight">
@@ -13,22 +13,22 @@
           </div>
         </a>
         <a href="#" class="a3">
-          <img src="../assets/Arightpost.png" alt="" class="img3">
+          <router-link :to="{path:''}"><img src="../assets/Arightpost.png" alt="" class="img3"></router-link>
         </a>
       </div>
       <div class="activity">
         <div class="activity1">
-          <span :style="{background: '#' + activitieInfo[5]}">{{activitieInfo[0]}}</span>
-          {{activitieInfo[1]}}{{activitieInfo[3]}}
+          <span :style="{background: '#'+actInfo[5]}">{{actInfo[0]}}</span>
+          {{actInfo[1]}}{{actInfo[3]}}
         </div>
         <div class="activity2">
-          <span class="imgup">{{activitieInfo[2]}}{{activitieInfo[4]}}</span>
-          <img :src="activitieInfo[6]" alt="" class="img4" >
+          <span class="imgup">{{actInfo[2]}}{{actInfo[4]}}</span>
+          <img :src="actInfo[6]" alt="" class="img4" >
         </div>
       </div>
       <div class="shopsAndevaluate">
-        <router-link :to="{name:'aca'}">商品</router-link>
-        <router-link :to="{name:'acb'}">评价</router-link>
+        <router-link :to="{path:'/ashop/ashopfood',query:{id:shopInfo.id}}" @click.native="change1=true" :style="{borderBottom:change1 ? '0.1rem solid #3190e8' : '0.1rem solid white'}">商品</router-link>
+        <router-link :to="{path:'/ashop/apingjia',query:{id:shopInfo.id}}" @click.native="change1=false" :style="{borderBottom:change1 ? '0.1rem solid white' : '0.1rem solid #3190e8'}">评价</router-link>
       </div>
       <router-view></router-view>
     </div>
@@ -39,37 +39,41 @@
       name: "aShop",
       data(){
         return {
-          activitieInfo:['','','','','','rgba(0,0,0,0)',''],
+          change1:true,
+          actInfo:['','','','','','rgba(0,0,0,0)',''],
           lastInfo:[],
           shopInfo:[],
           imgUrl:"https://elm.cangdu.org/img/",
         }
       },
+      methods:{
+
+      },
       created(){
-          this.lastInfo=[this.$route.params.id,this.$route.params.latitude,this.$route.params.longitude];
+          this.lastInfo=[this.$route.query.id,this.$route.query.latitude,this.$route.query.longitude];
           this.axios.get("http://elm.cangdu.org/shopping/restaurant/" + this.lastInfo[0] + "?latitude=" + this.lastInfo[1] + "&longitude=" + this.lastInfo[2] + "&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics").then((p)=>{
             this.shopInfo=p.data;
-            console.log(this.shopInfo.activities);
-            if(this.shopInfo.activities.length!=0){
-              this.activitieInfo[0]=this.shopInfo.activities[0].icon_name;
-              this.activitieInfo[1]=this.shopInfo.activities[0].description;
-              this.activitieInfo[2]=this.shopInfo.activities[0].id;
-              this.activitieInfo[3]="(APP专享)";
-              this.activitieInfo[4]="个活动";
-              this.activitieInfo[5]=this.shopInfo.activities[0].icon_color;
-              this.activitieInfo[6]="../assets/Arightpost.png";
+            // console.log(this.shopInfo)
+            if(this.shopInfo.activities.length==1){
+              this.actInfo[0]=this.shopInfo.activities[0].icon_name;
+              this.actInfo[1]=this.shopInfo.activities[0].description;
+              this.actInfo[2]=this.shopInfo.activities[0].id;
+              this.actInfo[3]="(APP专享)";
+              this.actInfo[4]="个活动";
+              this.actInfo[5]=this.shopInfo.activities[0].icon_color;
+              this.actInfo[6]="../assets/Arightpost.png";
             }
-            console.log(this.activitieInfo);
-
           })
-      }
+      },
     }
 </script>
 
 <style scoped>
+  @import "//at.alicdn.com/t/font_1460833_wiu5qmiis8c.css";
   .div1{
     width:100%;
     height: 100%;
+    overflow: hidden;
   }
   .header{
     width: 100%;
@@ -106,11 +110,13 @@
     line-height: 1.25rem;
     font-size: 0.9rem;
     font-weight: 700;
+    margin: 0;
   }
   .headRight>p{
     font-size: 0.6rem;
     height: 0.8rem;
     line-height: 0.8rem;
+    margin: 0;
   }
   .a3{
     width: 6.25%;
@@ -152,9 +158,10 @@
   }
   .shopsAndevaluate>a{
     display: inline-block;
-    height: 0.8rem;
+    height: 1.5rem;
+    color: #333;
     font-size: 0.65rem;
+    line-height: 0.8rem;
     padding:0.3rem 0.15rem;
-    border-bottom: 0.15rem solid #3190e8;
   }
 </style>
