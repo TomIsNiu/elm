@@ -56,7 +56,9 @@
     text-align: center;
     margin-bottom: 0;
   }
-
+p{
+  margin-top: 0.1rem;
+}
 </style>
 <style>
   h1{

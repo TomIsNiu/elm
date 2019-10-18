@@ -9,7 +9,7 @@
       <div class="show-time">
         <div class="show">
           <p class="show-zhi">支付剩余时间</p>
-          <van-count-down :time="time" style="font-size: 2rem;margin-bottom: 2rem" />
+          <van-count-down :time="time" style="font-size: 2rem;margin-bottom: 2rem" @finish="f"/>
         </div>
       </div>
       <div class="xuan">选择支付方式</div>
@@ -34,6 +34,7 @@
         </div>
       </div>
       <p class="que" @click="yue">确认支付</p>
+      <transition name="bounce">
       <div class="btan" v-if="p">
         <div class="btan1">
           <span class="btan2"></span>
@@ -42,6 +43,7 @@
         <p class="btan4">{{con}}</p>
         <div class="btan5"  @click="yin">确认</div>
       </div>
+      </transition>
     </div>
 </template>
 
@@ -50,7 +52,7 @@
         name: "CMemberCenter2",
       data() {
         return {
-          time:  0,
+          time: 15*60*1000,
           radio: '1',
           p:false,
           con:"暂不支持开放功能"
@@ -68,7 +70,18 @@
             this.con="当前环境无法支付,请打开官方APP进行付款"
           }
         },
+        f(){
+          if (this.p==false){
+            this.p=true;
+            this.con="支付超时"
+          }
+        }
       },
+      // computed: {
+      //    getTime() {
+      //      return this.time;
+      //    }
+      // },
       created(){
           this.p=true;
       }
@@ -172,6 +185,23 @@
     flex-direction: column;
     border: 1px;
     border-radius: .25rem;
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   .btan1{
     width: 3rem;

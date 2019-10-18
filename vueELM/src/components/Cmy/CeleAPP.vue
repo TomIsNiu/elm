@@ -1,7 +1,7 @@
 <template>
     <div id="Cimg">
       <mt-header>
-        <router-link to="/" slot="left" class="con">
+        <router-link to="/bMine" slot="left" class="con">
           <img src="../../assets/Cleft.png" alt="" id="Cleft">
           <span id="load">下载</span>
         </router-link>
@@ -10,6 +10,7 @@
         <img src="../../assets/timg.jpg" alt="">
         <p id="zai">下载饿了么app</p>
         <button type="button" class="btn btn-success" style="width: 15rem;background-color: #4cd964" @click="xia">下载</button>
+        <transition name="bounce">
         <div class="btan" v-if="p">
           <div class="btan1">
             <span class="btan2"></span>
@@ -18,17 +19,19 @@
           <p class="btan4">IOS用户请前往AppStore下载</p>
           <div class="btan5"  @click="yin">确认</div>
         </div>
+        </transition>
       </div>
     </div>
 </template>
 
 <script>
+
     export default {
         name: "CeleAPP",
       data() {
         return {
           products: [],
-          p:false
+          p:false,
         }
       },
       // components:{
@@ -110,6 +113,23 @@
   flex-direction: column;
   border: 1px;
   border-radius: .25rem;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .btan1{
   width: 3rem;

@@ -1,7 +1,7 @@
 <template>
   <div id="Cserver">
     <mt-header>
-      <router-link to="/" slot="left" class="con">
+      <router-link :to="{path:'/bMine'}" slot="left" class="con">
         <img src="../../assets/Cleft.png" alt="" id="Cleft">
         <span id="load">服务中心</span>
       </router-link>
@@ -90,6 +90,8 @@
     width: 100%;
     text-align: center;
     overflow: hidden;
+    margin-top: 0.4rem;
+    background-color: white;
   }
 
   #Czai, #Czai1 {
@@ -121,6 +123,7 @@
   /*热门问题*/
   #row{
     width: 100%;
+    background-color: white;
   }
   #Crow{
     font-size: 1rem;

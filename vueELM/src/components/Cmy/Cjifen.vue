@@ -2,7 +2,7 @@
   <!--我的积分-->
     <div id="jifen">
       <mt-header>
-        <router-link to="/" slot="left" class="con">
+        <router-link to="/bMine" slot="left" class="con">
           <img src="../../assets/Cleft.png" alt="" id="Cleft">
           <span id="load">我的积分</span>
         </router-link>
@@ -21,6 +21,7 @@
             <span>分</span>
           </p>
           <mt-button type="default" id="tixian"  @click="yin">积分兑换商品</mt-button>
+          <transition name="bounce">
           <div class="btan" v-if="p">
             <div class="btan1">
               <span class="btan2"></span>
@@ -29,6 +30,7 @@
             <p class="btan4">快去下单赚取大量积分吧</p>
             <div class="btan5"  @click="yue">确认</div>
           </div>
+          </transition>
         </div>
       </div>
       <p id="detail">最近30天积分记录</p>
@@ -192,6 +194,23 @@
     flex-direction: column;
     border: 1px;
     border-radius: .25rem;
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   .btan1{
     width: 3rem;

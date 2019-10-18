@@ -2,7 +2,7 @@
   <!--我的余额-->
     <div id="balance">
       <mt-header>
-        <router-link to="/" slot="left" class="con">
+        <router-link to="/bMine" slot="left" class="con">
           <img src="../../assets/Cleft.png" alt="" id="Cleft">
           <span id="load">我的余额</span>
         </router-link>

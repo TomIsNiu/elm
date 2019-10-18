@@ -45,7 +45,7 @@
         <div class="apply-buy-right" @click="change">购买</div>
       </div>
     </div>
-    <router-link :to="{path: '/'}" class="common">
+    <router-link :to="{path: '/cmembercenter3'}" class="common">
       <span class="common-left">兑换会员</span>
       <span class="common-right">使用卡号卡密></span>
     </router-link>

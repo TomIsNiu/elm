@@ -2,7 +2,7 @@
   <!--推荐有奖-->
     <div id="recommend">
       <mt-header>
-        <router-link to="/cdiscounts" slot="left" class="con">
+        <router-link :to="{path:'/cdiscounts'}" slot="left" class="con">
           <img src="../../assets/Cleft.png" alt="" id="Cleft">
           <span id="load">推荐有奖</span>
         </router-link>
@@ -20,6 +20,7 @@
         <div class="yao">
           <img src="../../assets/Cerwei.png" alt="" @click="yue">
           <p>面对面邀请</p>
+          <transition name="bounce">
           <div class="btan" v-if="p">
             <div class="btan1">
               <span class="btan2"></span>
@@ -28,6 +29,7 @@
             <p class="btan4">请在饿了么APP打开</p>
             <div class="btan5"  @click="yin">确认</div>
           </div>
+          </transition>
         </div>
       </div>
       <div class="invite">
@@ -184,6 +186,23 @@
     flex-direction: column;
     border: 1px;
     border-radius: .25rem;
+  }
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   .btan1{
     width: 3rem;
