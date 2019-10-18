@@ -14,6 +14,9 @@ import bPath from '../components/bPath'
 import bAddress from '../components/bAddress'
 import bSou from '../components/bSou'
 import bAccount from '../components/bAccount'
+import bRevise from '../components/bRevise'
+import bDizhi from '../components/bDizhi'
+import bSdiz from '../components/bSdiz'
 Vue.use(Router)
 //引入swiper
 
@@ -74,10 +77,14 @@ export default new Router({
     {path:'/bDeng',component: bDeng},
     {path:'/bXiu',component:bXiu},
     {path:'/bPath',component:bPath},
-    {path:'/bAddress',component: bAddress},
-    {path:'/bSou',component:bSou},
+    {path:'/bAddress',component: bAddress,name:'cc'},
     {path:'/bAccount',component:bAccount},
-    
+    {path:'/bRevise',component:bRevise},
+    {path:'/bDizhi',component:bDizhi},
+    {path:'/bSdiz',component:bSdiz,name:'bb',meta:{keepAlive: true}},
+    {path:'/bSou',component:bSou,meta:{keepAlive: false}},
+
+
     {path: '/cele',component:CeleAPP},//跳转到下载App页面
     {path: '/cserver',component:Cserver},//服务中心页面
     {path:'/ccon',component:Ccon},//服务中心页面跳转的组件
