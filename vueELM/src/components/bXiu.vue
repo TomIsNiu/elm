@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="bm">
-      <router-link :to="{path:'/bDeng'}">
-        <i class="iconfont icon-zuojian" style="line-height: 3rem; font-size: 1rem;color: white"></i>
+      <router-link :to="{path:aa}">
+        <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
       </router-link>
       <span class="bmi">重置密码</span>
     </div>
@@ -43,6 +43,7 @@
     name: "bXiu",
     data() {
       return {
+        aa:'/bDeng',
         pwdType: 'text',
         bss:require('../assets/new2.png'),
         yanzheng:'',
@@ -52,7 +53,19 @@
         captcha_code:'',
         newpassword:'',
         confirmpassword:'',
-        cheng:''
+        cheng:'',
+        // number:''
+      }
+    },
+    computed:{
+      numbe(){
+        var that=this;
+        if(this.$route.query.number==1){
+          console.log(this);
+          that.aa='/bAccount'
+        }else {
+          that.aa='/bDeng'
+        }
       }
     },
     methods: {
@@ -99,7 +112,7 @@
         console.log(person.data.code);
         this.yanzheng=person.data.code;
       });
-
+      this.numbe;
     }
   }
 </script>
@@ -107,23 +120,23 @@
 <style scoped>
   @import "//at.alicdn.com/t/font_1453346_v5w9ntjvvt.css";
   .bm{
-    display: flex;
-    justify-content: start;
-    border-bottom: 0.01rem solid #999;
-    align-items: start;
-    background-color: dodgerblue;
-    font-size: 1.5rem;
-    color: white;
-    overflow: hidden;
+    background-color: #3190e8;
+    z-index: 100;
+    width: 100%;
+    height: 2.5rem;
     position: relative;
   }
   .bmi{
-    /*margin-left: 5.5rem;*/
-    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    color: #fff;
     text-align: center;
   }
   .bmain {
-    margin-top: 1.365853rem;
+    margin-top: 1rem;
     background-color: white;
     position: relative;
   }
@@ -162,6 +175,7 @@
   .btn{
     background-color:#4cd964;
     width: 90%;
+    color: white;
     margin: 1rem auto;
   }
   .btan{

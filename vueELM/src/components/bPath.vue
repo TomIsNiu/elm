@@ -2,10 +2,22 @@
     <div id="app">
       <div class="bm">
         <router-link :to="{path:'/bDeng'}">
-          <i class="iconfont icon-zuojian" style="line-height: 2rem; font-size: 1rem;color: white"></i>
+          <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">选择地址</span>
       </div>
+      <ul v-for="(v,i) in sh" :key="i" class="ww">
+        <div class="cc">
+        <li>
+          <span>姓名:{{v.name}}</span>&nbsp;&nbsp;
+          <span>性别:{{v.sex}}</span><br/>
+        </li>
+
+          <li>电话:{{v.phone}}</li>
+        </div>
+        <li>地址:{{v.address}}</li>
+        <button class="btt" @click="sss(i)">删除</button>
+      </ul>
       <router-link :to="{path: '/bAddress'}" class="bdi">
         <i class="iconfont icon-jia1" style="font-size: 1.3rem"></i>
         <span class="bzhi">新增收获地址</span>
@@ -15,7 +27,23 @@
 
 <script>
     export default {
-        name: "bPath"
+        name: "bPath",
+      data(){
+        return{
+          sh:[],
+        }
+      },
+      created(){
+        var ct=JSON.parse(localStorage.getItem('dizhi'));
+        this.sh=ct;
+        console.log(this.shu)
+      },
+      methods:{
+        sss(index){
+          this.sh.splice(index,1);
+          localStorage.setItem("dizhi",JSON.stringify(this.sh));
+        }
+      }
     }
 </script>
 
@@ -24,12 +52,11 @@
   @import "//at.alicdn.com/t/font_1453346_luidj8vy6d.css";
   .bm{
     background-color: #3190e8;
-    position: fixed;
     z-index: 100;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 1.95rem;
+    height: 2.5rem;
+    position: relative;
+    overflow: hidden;
   }
   .bmi{
     position: absolute;
@@ -57,6 +84,28 @@
     font-size: .7rem;
     color: #3190e8;
     margin-left: .3rem;
+  }
+  .ww{
+    border-bottom: 0.03rem solid #999;
+    background-color: white;
+    overflow: hidden;
+  }
+  .cc{
+    width: 100%;
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
+  }
+ .btt{
+  float: right;
+  border: 0.01rem solid red;
+  background-color: dodgerblue;
+  color: white;
+  padding: 0 0.5rem;
+   border-radius: 0.25rem;
+ }
+  li{
+    padding: 0.2rem;
+    /*border-bottom: 0.01rem solid #e4e4e4;*/
   }
 
 </style>

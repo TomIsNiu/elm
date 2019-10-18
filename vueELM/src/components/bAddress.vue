@@ -1,8 +1,8 @@
 <template>
     <div id="app">
       <div class="bm">
-        <router-link :to="{path:'/bDeng'}">
-          <i class="iconfont icon-zuojian" style="line-height: 2rem; font-size: 1rem;color: white"></i>
+        <router-link :to="{path:'/bPath'}">
+          <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">添加地址</span>
       </div>
@@ -12,8 +12,8 @@
           <div class="brigh">
             <input type="text" placeholder="你的名字" class="binp" v-model="input1">
               <van-radio-group v-model="radio" class="bxuan">
-                <van-radio name="1" checked-color="#07c160" class="bxian">先生</van-radio>
-                <van-radio name="2" checked-color="#07c160">女士</van-radio>
+                <van-radio name="1" checked-color="#07c160" class="bxian" @click="zzz">先生</van-radio>
+                <van-radio name="2" checked-color="#07c160" @click="zz">女士</van-radio>
               </van-radio-group>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="bs">
           <span class="bss">送餐地址</span>
           <div class="brigh">
-            <router-link :to="{path:'/bSou'}">
+            <router-link :to="{path:'/bSou',query:{sou:this.jj}}">
             <input type="text" placeholder="小区/写字楼/学校等" class="binp" v-model="input3">
             </router-link>
             <div class="bxuan">
@@ -64,6 +64,7 @@
       name: "bAddress",
       data() {
         return {
+          jj:1,
           radio: '1',
           aa: false,
           p: false,
@@ -71,10 +72,19 @@
           input2: '',
           input3: '',
           input4: '',
-          showZi: ''
+          showZi: '',
+          sex:''
         }
       },
       methods: {
+        zzz(){
+          this.sex='先生'
+          console.log(this.sex)
+        },
+        zz(){
+          this.sex='女士'
+          console.log(this.sex)
+        },
         dian() {
           if (this.aa == false) {
             this.aa = true;
@@ -114,8 +124,26 @@
               this.p= true;
               this.showZi = "请填写详细地址";
             }
+          }else {
+            let arr = [];
+            const info = { name:this.input1, sex: this.sex,phone:this.input2,address:this.input3,detailed:this.input4 };
+            if(!localStorage.getItem("dizhi")){
+              arr.push(info);
+            }else{
+              arr=JSON.parse(localStorage.getItem('dizhi'));
+              arr.push(info);
+            }
+            console.log(arr);
+            localStorage.setItem("dizhi",JSON.stringify(arr));
+            this.$router.push({path:'/bPath'})
           }
+
         }
+      },
+      created(){
+        this.zzz();
+        console.log( this.$route.params.name);
+        this.input3= this.$route.params.name
       }
     }
 </script>
@@ -127,7 +155,7 @@
     background-color: #3190e8;
     z-index: 100;
     width: 100%;
-    height: 1.95rem;
+    height: 2.5rem;
     position: relative;
   }
   .bmi{

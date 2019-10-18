@@ -5,7 +5,7 @@
         <span id="b2">我的</span>
       </div>
      <router-link :to="{path:bb}" id="b3">
-       <img src="../assets/touxiang.png" alt=""  style="width: 3rem; margin-top: 1rem">
+       <img src="../assets/touxiang.png" alt=""  style="width: 3rem; margin-top: 1rem;margin-left: 0.2rem">
        <span id="bz">{{user}}</span>
        <span id="bs"><img src="../assets/phone.png" alt="" style="width: 1.2rem; margin-top: 2.7rem"><span>暂无绑定手机号</span></span>
        <span id="by"> > </span>
@@ -16,8 +16,8 @@
             <span class="bwei"><span class="bnumber1">0.00</span>分</span>
             <span class="bxia">我的余额</span>
           </li></router-link>
-          <router-link :to="{path:'/cdiscounts'}"><li class="bli">
-            <span class="bwei"><span class="bnumber2">3</span>个</span>
+          <router-link :to="{path:'/cdiscounts',query:{number:this.zz}}"><li class="bli">
+            <span class="bwei"><span class="bnumber2">{{hong}}</span>个</span>
             <span class="bxia">我的优惠</span>
           </li></router-link>
           <router-link :to="{path:'/jifen'}"><li class="bli blis">
@@ -80,19 +80,28 @@
             bb:'/bDeng',
             user:'登陆/注册',
             pp:'',
-            username:''
+            username:'',
+            hong:3,
+            zz:'',
           }
       },
       methods:{
 
       },
-      mounted(){
+      created(){
           this.axios.get('https://elm.cangdu.org/v1/user').then((person)=>{
-            console.log(person.data.username);
-            if(person.data.username!=''){
-            this.user=person.data.username;}
-            this.bb='/bAccount';
-            console.log(this.user)
+            console.log(person.data);
+            if(person.data.status!=0){
+              this.user=person.data.username;
+              this.hong=person.data.gift_amount;
+              this.bb='/bAccount';
+              this.zz=1;
+            }else {
+              this.user='登陆/注册';
+              this.hong=0;
+              this.bb='/bDeng'
+            }
+
           })
       }
 
@@ -205,7 +214,7 @@ position: absolute;
     background-color: white;
   }
   .bzz{
-    border-bottom: 0.01rem solid #999;
+    border-bottom: 0.01rem solid #e4e4e4;
     padding: 0.5rem;
     overflow: hidden;
     font-size: 0.9rem;

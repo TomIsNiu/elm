@@ -1,39 +1,40 @@
 <template>
     <div class="account">
       <div class="bm">
-        <router-link :to="{path:'/bAddress'}">
-          <i class="iconfont icon-zuojian" style="line-height: 2rem; font-size: 1rem;color: white"></i>
+        <router-link :to="{path:'/bMine'}">
+          <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">账户信息</span>
       </div>
       <div class="tou">
         <div class="chuan">
-          <input type="file" class="tu">
+          <input type="file" class="tu" accept="image/*"  @change="previewPic">
           <h2 class="wen">头像</h2>
           <div class="you">
-            <img src="../assets/tou.png" alt="" class="imgg">
+            <img :src="pic" alt="" class="imgg">
             <span>
               <i class="iconfont icon-youjian" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
             </span>
           </div>
         </div>
-        <router-link :to="{path:'/'}" class="yong">
+        <router-link :to="{path:'/bRevise'}" class="yong">
           <div class="bao">
           <div class="yon">用户名</div>
           <div class="huo">
-            <p class="aa">www</p>
+            <p class="aa">{{user}}</p>
             <i class="iconfont icon-youjian" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
           </div>
           </div>
         </router-link>
-        <router-link :to="{path:'/'}" class="shou">
+        <router-link :to="{path:'/bDizhi'}" class="shou">
           <div class="di">
           <h2 class="stree">收获地址</h2>
             <i class="iconfont icon-youjian" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
           </div>
         </router-link>
         <div class="bang">账号绑定</div>
-        <router-link :to="{path:'/'}" class="shou">
+
+        <div class="shou" @click="yins">
           <div class="di">
             <div class="ji">
             <i class="iconfont icon-shouji" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
@@ -41,9 +42,9 @@
             </div>
             <i class="iconfont icon-youjian" style="line-height: 2rem; font-size: 1rem;color: #999"></i>
           </div>
-        </router-link>
+        </div>
         <div class="bang">安全设置</div>
-        <router-link :to="{path:'/bXiu'}" class="yong">
+        <router-link :to="{path:'/bXiu',query:{number:1}}" class="yong">
           <div class="bao">
             <div class="yon">登陆密码</div>
             <div class="huo">
@@ -52,7 +53,7 @@
             </div>
           </div>
         </router-link>
-        <button type="button" class="btn btn-default btn-lg btn-block">退出登陆</button>
+        <button type="button" class="btn btn-default btn-lg btn-block" @click=" dengs">退出登陆</button>
         <div class="btan" v-if="p">
           <div class="btan1">
             <span class="btan2"></span>
@@ -60,6 +61,22 @@
           </div>
           <p class="btan4">请在手机App中设置</p>
           <div class="btan5"  @click="yin">确认</div>
+        </div>
+      </div>
+      <div class='popContainer' v-if="g">
+        <div class="btan  z1 " v-if="s">
+          <div class="btan1 ">
+            <span class="btan2"></span>
+            <span  class="btan3"></span>
+          </div>
+          <p class="btan4 z2">是否退出登陆</p>
+          <div class="z3">
+            <button class="z4" @click="deng">再等等</button>
+            <div class="z5">
+              <button class="z51" @click="tui">退出登录</button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -71,7 +88,11 @@
         name: "bAccount",
       data(){
           return{
-            p:false
+            user:'',
+            g:false,
+            s:true,
+            p:false,
+            pic:require('../assets/tou.png')
           }
       },
       methods:{
@@ -80,8 +101,41 @@
         },
         yin(){
           this.p=false;
+        },
+        previewPic:function(e){
+            var that = this;
+            var file = e.target.files[0];
+            var fr =new FileReader();
+            fr.readAsDataURL(file);
+            fr.onload = function(e){
+              that.pic = e.target.result;
+            } ;
+          },
+          deng(){
+            this.g=false
+          },
+        dengs(){
+          this.g=true
+        },
+        tui(){
+          this.axios.get('https://elm.cangdu.org/v2/signout').then((person)=>{
+            console.log(person.data.status);
+            this.g=false
+            if(person.data.status==1){
+              this.$router.push({
+                name:'bMin',
+              });
+            }
+          })
         }
-
+      },
+      created(){
+        this.axios.get('https://elm.cangdu.org/v1/user').then((person)=>{
+          console.log(person.data.username);
+          if(person.data.username!=''){
+            this.user=person.data.username;}
+        });
+        this.axios.post('https://elm.cangdu.org/v1/addimg/:type')
       }
     }
 </script>
@@ -90,11 +144,20 @@
   @import "//at.alicdn.com/t/font_1453346_v5w9ntjvvt.css";
   @import "//at.alicdn.com/t/font_1453346_5lj3z87kfvd.css";
   @import "//at.alicdn.com/t/font_1453346_6lhpt27ouap.css";
+
+  .popContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+  }
   .bm{
     background-color: #3190e8;
     z-index: 100;
     width: 100%;
-    height: 1.95rem;
+    height: 2.5rem;
     position: relative;
   }
   .bmi{
@@ -296,6 +359,58 @@
     border-bottom-left-radius: .25rem;
     border-bottom-right-radius: .25rem;
   }
-
+  .z1{
+    width: 15rem;
+    margin-left: -7.5rem;
+  }
+  .z2{
+    font-size: 1.3rem;
+    padding-top: 1rem;
+  }
+  .z3{
+    width: 100%;
+    text-align: center;
+    margin: 1rem;
+  }
+  .z4{
+    background: #c1c1c1;
+    margin-right: .4rem;
+    display: inline-block;
+    padding: .4rem 1rem;
+    border-radius: 5px;
+    font-size: .8rem;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-top: 26px;
+    border-radius: 0.4rem;
+   border: none;
+  }
+  .z5{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    color: #333;
+    font-weight: 400;
+    font-family: Microsoft Yahei;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+  }
+  .z51{
+    display: inline-block;
+    padding: .4rem 1rem;
+    border-radius: 5px;
+    font-size: .8rem;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-top: 26px;
+    border: none;
+    box-sizing: border-box;
+    background-color: #dd6b55;
+  }
 
 </style>
