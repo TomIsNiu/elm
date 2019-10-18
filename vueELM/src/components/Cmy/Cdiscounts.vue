@@ -40,7 +40,7 @@
           <p>限品类：快餐便当、特色菜系、小吃夜宵、甜品饮品、异国料理</p>
         </footer>
       </ul>
-      <router-link :to="{path:'/chistory'}" class="history-hongbao">
+      <router-link :to="{path:'/chistory'}" class="history-hongbao" v-show="zz">
           查看历史红包<span> ></span>
       </router-link>
       <div class="footer-dui">
@@ -71,6 +71,7 @@
         name: "Cdiscounts",
       data() {
           return {
+            zz:false,
             isActive: 0,
             itemList: ['红包', '商家代金券'],
             isFalse: true,
@@ -97,19 +98,25 @@
         }
       },
       created(){
+        if(this.$route.query.number==1){
+          this.zz=true;
+          console.log(this.$route.query.number);
           this.myHttp.get("/promotion/v2/users/1/hongbaos?limit=20&offset=0",(response)=>{
             this.prodouct=response;
-            this.p=this.prodouct.length
+            this.p=this.prodouct.length;
             console.log(this.prodouct);
           }, (err) => {
             console.log(err);
           });
-        this.myHttp.get("/v3/profile/explain", (response) => {
-          this.hongbao = response;
-          console.log(this.hongbao);
-        }, (err) => {
-          console.log(err);
-        });
+          this.myHttp.get("/v3/profile/explain", (response) => {
+            this.hongbao = response;
+            console.log(this.hongbao);
+          }, (err) => {
+            console.log(err);
+          });
+        }else {
+          this.zz=false
+        }
       }
     }
 </script>
