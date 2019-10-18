@@ -38,12 +38,19 @@ import Jifen2 from '../components/Cmy/Cjifen2'
 import  Crecommend from '../components/Cmy/Crecommend'
 import  Cdiscounts from '../components/Cmy/Cdiscounts'
 import  Cdiscounts1 from '../components/Cmy/Cdiscounts1'
+import  Cconversion from '../components/Cmy/Cconversion'
 import  Cdaijinquan from '../components/Cmy/Cdaijinquan'
 import Chistory from '../components/Cmy/Chistory'
 import  Cmembercenter from '../components/Cmy/CMemberCenter'
 import  Cmembercenter1 from '../components/Cmy/CMemberCenter1'
 import  Cmembercenter2 from '../components/Cmy/CMemberCenter2'
 import  Cmembercenter4 from '../components/Cmy/CMemberCenter4'
+import Cmembercenter3 from '../components/Cmy/CMemberCenter3'
+import Cshops from '../components/Cmy/CShops'
+import  Cfood from '../components/Cmy/Cfood'
+import Cconfirm from '../components/Cmy/Cconfirm'
+import  COrderComment from '../components/Cmy/COrderComment'
+import  Cinvoice from '../components/Cmy/Cinvoice'
 Vue.use(Router)
 
 //引入vant
@@ -82,11 +89,18 @@ export default new Router({
     {path:"/crecommend",component:Crecommend},//推荐有奖
     {path:"/cdiscounts",component:Cdiscounts},//我的优惠
     {path:"/cdiscounts1",component:Cdiscounts1},//红包说明
+    {path:"/cconversion",component:Cconversion},//兑换红包
     {path:"/cdaijinquan",component:Cdaijinquan},//代金券说明
     {path:"/chistory",component:Chistory},//历史红包
     {path:"/cmembercenter",component:Cmembercenter},//会员中心
     {path:"/cmembercenter1",component:Cmembercenter1},//会员说明
     {path:"/cmembercenter2",component:Cmembercenter2},//在线支付
-    {path:"/cmembercenter4",component:Cmembercenter4}//购买记录
+    {path:"/cmembercenter4",component:Cmembercenter4},//购买记录
+    {path:"/cmembercenter3",component:Cmembercenter3},//兑换会员
+    {path:"/cshops",component:Cshops},//商家详情
+    {path:"/cfood",component:Cfood},//食品安全监督公示
+    {path:"/cconfirm",component:Cconfirm, name:'ccon'},//确认订单
+    {path:"/cordercomment",component:COrderComment},//订单备注
+    {path:"/cinvoice",component:Cinvoice}//选择发票抬头
   ]
 })
