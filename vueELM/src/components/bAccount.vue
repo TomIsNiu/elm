@@ -1,7 +1,7 @@
 <template>
     <div class="account">
       <div class="bm">
-        <router-link :to="{path:'/bMine'}">
+        <router-link :to="{path:'/adeliciousfood/bMine'}">
           <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">账户信息</span>
