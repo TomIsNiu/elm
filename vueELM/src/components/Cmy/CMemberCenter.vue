@@ -2,12 +2,12 @@
     <!--会员中心-->
   <div class="member">
     <mt-header>
-      <router-link to="/cdiscounts" slot="left" class="con">
+      <router-link to="/bMine" slot="left" class="con">
         <img src="../../assets/Cleft.png" alt="" id="Cleft">
         <span id="load">会员中心</span>
       </router-link>
     </mt-header>
-    <p class="buy">为账户<span>12345</span>购买会员</p>
+    <p class="buy">为账户<span>{{sss}}</span>购买会员</p>
     <div class="vip-pre">
       <router-link :to="{path:'/cmembercenter1',query:{naa:this.products.memberContent}}" class="vip-header" >
         <span class="vip-left">会员特权</span>
@@ -62,13 +62,8 @@
       data() {
         return {
           products: [],
+          sss:''
         }
-      },
-      created() {
-        this.myHttp.get("/v3/profile/explain", (response) => {
-          this.products = response;
-          console.log(this.products);
-        })
       },
       methods: {
         change() {
@@ -76,6 +71,19 @@
             path: '/cmembercenter2',   //跳转的路径
           })
         }
+      },
+      created(){
+        this.myHttp.get("/v3/profile/explain", (response) => {
+          this.products = response;
+          console.log(this.products);
+        });
+        this.axios.get('https://elm.cangdu.org/v1/user').then((person)=>{
+          console.log(person.data);
+          if(person.data.status!=0){
+            this.sss=person.data.username;
+          }
+
+        })
       }
     }
 </script>

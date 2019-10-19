@@ -110,7 +110,7 @@
           });
           this.myHttp.get("/v3/profile/explain", (response) => {
             this.hongbao = response;
-            console.log(this.hongbao);
+            console.log(this.hongbao.couponCaption);
           }, (err) => {
             console.log(err);
           });

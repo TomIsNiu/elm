@@ -1,7 +1,7 @@
 <template>
   <div id="dai">
     <mt-header>
-      <router-link to="/cdiscounts" slot="left" class="con">
+      <router-link :to="{path:'/cdiscounts',query:{number:this.zz}}" slot="left" class="con">
         <img src="../../assets/Cleft.png" alt="" id="Cleft">
         <p id="load">{{getQueryData}}</p>
       </router-link>
@@ -15,7 +15,8 @@
         name: "Cdaijinquan",
       data() {
         return {
-          Ccon: ""
+          Ccon: "",
+          zz:'',
         }
       },
       computed: {
@@ -25,6 +26,9 @@
         getConData() {
           return this.$route.query.ha;
         }
+      },
+      created(){
+        this.zz=1;
       }
     }
 </script>
