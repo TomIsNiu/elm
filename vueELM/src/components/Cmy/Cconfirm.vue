@@ -2,13 +2,13 @@
   <div>
     <div class="confirm">
       <div class="head-top">
-  <router-link :to="{path: '/'}">
+  <router-link :to="{path: '/ashop/ashopfood'}">
   <img src="../../assets/Cleft.png" alt="" class="go-back">
   </router-link>
   <router-link :to="{path:'/'}" class="deng">登录|注册<!--<i class="iconfont icon-touxiang1-copy"></i> 登录 注册--></router-link>
   <div class="title-head">确认订单</div>
 </div>
-      <router-link :to="{path:'/'}" class="address-container">
+      <router-link :to="{path:'/bPath'}" class="address-container">
         <div class="address-empty-left">
           <i class="iconfont icon-location"></i>
           <div class="address">请添加一个收货地址</div>
@@ -108,7 +108,7 @@
       </div>
       <div class="confrim_order">
       <p>待支付 <span> ¥11352</span></p>
-      <p>确认下单</p>
+      <p @click="sss">确认下单</p>
       </div>
     </div>
   </div>
@@ -132,6 +132,9 @@
         showPopup() {
           this.show = true;
         },
+        sss(){
+          this.$router.push({path:'/bDing'})
+        }
       },
       created(){
           if (this.$route.params.cun != null) {

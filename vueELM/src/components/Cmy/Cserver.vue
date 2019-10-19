@@ -1,7 +1,7 @@
 <template>
   <div id="Cserver">
     <mt-header>
-      <router-link :to="{path:'/bMine'}" slot="left" class="con">
+      <router-link :to="{path:'/adeliciousfood/bMine'}" slot="left" class="con">
         <img src="../../assets/Cleft.png" alt="" id="Cleft">
         <span id="load">服务中心</span>
       </router-link>

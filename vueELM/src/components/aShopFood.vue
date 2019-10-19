@@ -117,9 +117,9 @@
         },
         //去结算
         gotoSettlement(){
-          // if(this.cartInfo.length>0){
-          //   this.$route.push({path:'/'})
-          // }
+          if(this.cartInfo.length>0){
+            this.$router.push({path:'/cconfirm'})
+          }
         },
         //计算价格
         mycartprice(){

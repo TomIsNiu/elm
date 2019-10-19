@@ -10,7 +10,7 @@
           <i class='iconfont icon-zhizhen-' :style="{'color':Arrcolor[1]}"></i>
           <p>搜索</p>
         </router-link></li>
-        <li><router-link :to="{path:'/'}" @click.native="changeone(2)">
+        <li><router-link :to="{path:'/adeliciousfood/bDing'}" @click.native="changeone(2)">
           <i class='iconfont icon-dingdan' :style="{'color':Arrcolor[2]}"></i>
           <p>订单</p>
         </router-link></li>

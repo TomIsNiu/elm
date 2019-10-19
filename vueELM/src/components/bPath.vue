@@ -1,7 +1,7 @@
 <template>
     <div id="app">
       <div class="bm">
-        <router-link :to="{path:'/bDeng'}">
+        <router-link :to="{path:'/cconfirm'}">
           <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">选择地址</span>

@@ -31,7 +31,7 @@
       <div class="bding">
         <ul>
           <li class="bzz">
-           <router-link :to="{path:'/'}">
+           <router-link :to="{path:'/bDing'}">
              <i class="iconfont icon-dingdan" style="color: #666;font-size: 1rem"></i>
              <span style="font-size: 0.9rem">我的订单</span>
              <span class="byou"> > </span>

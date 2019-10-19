@@ -1,7 +1,7 @@
 <template>
   <div id="discounts">
   <mt-header>
-    <router-link to="/bMine" slot="left" class="con">
+    <router-link to="/adeliciousfood/bMine" slot="left" class="con">
       <img src="../../assets/Cleft.png" alt="" id="Cleft">
       <span id="load">我的优惠</span>
     </router-link>

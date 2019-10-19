@@ -2,7 +2,7 @@
     <!--会员中心-->
   <div class="member">
     <mt-header>
-      <router-link to="/bMine" slot="left" class="con">
+      <router-link to="/adeliciousfood/bMine" slot="left" class="con">
         <img src="../../assets/Cleft.png" alt="" id="Cleft">
         <span id="load">会员中心</span>
       </router-link>

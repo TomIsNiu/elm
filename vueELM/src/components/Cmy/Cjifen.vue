@@ -2,7 +2,7 @@
   <!--我的积分-->
     <div id="jifen">
       <mt-header>
-        <router-link to="/bMine" slot="left" class="con">
+        <router-link to="/adeliciousfood/bMine" slot="left" class="con">
           <img src="../../assets/Cleft.png" alt="" id="Cleft">
           <span id="load">我的积分</span>
         </router-link>

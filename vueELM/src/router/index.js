@@ -20,6 +20,7 @@ import bAccount from '../components/bAccount'
 import bRevise from '../components/bRevise'
 import bDizhi from '../components/bDizhi'
 import bSdiz from '../components/bSdiz'
+import bDing from '../components/bDing'
 Vue.use(Router)
 //引入swiper
 
@@ -76,9 +77,10 @@ export default new Router({
     {path:'/aseachcity',component:aSeachCity,name:'aa'},
     {path:'/adeliciousfood',component:aDeliciousFood,children: [
         {path:"",redirect:'atakeout'},
-        {path:"atakeout",component:aTakeOut},
+        {path:"atakeout",component:aTakeOut,name:'ss'},
         {path:'asearch',component:aSearch},
-
+        {path:'bMine',component:bMine,name:'bMin'},
+        {path:'bDing',component:bDing},
       ]},
     {path:"/ashop",component:aShop,children:[
         {path:"",redirect:'ashopfood'},
@@ -87,7 +89,7 @@ export default new Router({
       ]},
     {path:"/asortshop",component:aSortShop},
 
-    {path:'/bMine',component:bMine,name:'bMin'},
+
     {path:'/bDeng',component: bDeng},
     {path:'/bXiu',component:bXiu},
     {path:'/bPath',component:bPath},
@@ -97,6 +99,7 @@ export default new Router({
     {path:'/bDizhi',component:bDizhi},
     {path:'/bSdiz',component:bSdiz,name:'bb',meta:{keepAlive: true}},
     {path:'/bSou',component:bSou,meta:{keepAlive: false}},
+    {path:'/bDing',component:bDing},
 
     {path: '/cele',component:CeleAPP},//跳转到下载App页面
     {path: '/cserver',component:Cserver},//服务中心页面
