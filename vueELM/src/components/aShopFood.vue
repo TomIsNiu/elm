@@ -46,7 +46,7 @@
       <div class="iscartinfo" v-show="change2">
         <div class="iscartinfotop">
           <span>购物车</span>
-          <span><i class='iconfont icon-shanchu1' style="color:#BBBBBB"></i> 清空</span>
+          <span @click="deleteAll2"><i class='iconfont icon-shanchu1' style="color:#BBBBBB"></i> 清空</span>
         </div>
         <ul>
           <li v-for="(a,b) in cartInfo" :key="b">
@@ -110,6 +110,11 @@
         })
       },
       methods:{
+        deleteAll2(){
+          this.cartInfo.splice(0,this.cartInfo.length);
+          this.mycartprice();
+          this.change2=!this.change2;
+        },
         //去结算
         gotoSettlement(){
           // if(this.cartInfo.length>0){
@@ -118,14 +123,12 @@
         },
         //计算价格
         mycartprice(){
-          console.log(this.price)
           let price=0;
           if(this.cartInfo.length==0){
             price=0;
           }else {
             for(let i=0;i<this.cartInfo.length;i++){
               price+=(this.cartInfo[i][1]+0)*(this.cartInfo[i][2]+0);
-              console.log(price);
             }
           }
           this.price.splice(0,1);

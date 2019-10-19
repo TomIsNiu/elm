@@ -2,22 +2,22 @@
     <div class="div1">
       <router-view></router-view>
       <ul class="bottoms">
-        <li><router-link :to="{path:'/adeliciousfood/atakeout',query:{name:lastInfo[0],latitude:lastInfo[1],longitude:lastInfo[2]}}" @click="changeone(0)">
-          <i class='iconfont icon-changyonglogo40' style="color:#1296db"></i>
+        <li><router-link :to="{path:'/adeliciousfood/atakeout',query:{name:lastInfo[0],latitude:lastInfo[1],longitude:lastInfo[2]}}" @click.native="changeone(0)">
+          <i class='iconfont icon-changyonglogo40' :style="{'color':Arrcolor[0]}"></i>
           <p>外卖</p>
         </router-link></li>
-        <li><router-link :to="{path:'/adeliciousfood/asearch',query:{x:lastInfo[1],y:lastInfo[2]}}" @click="changeone(1)">
-          <i class='iconfont icon-zhizhen-' style="color:#707070"></i>
+        <li><router-link :to="{path:'/adeliciousfood/asearch',query:{x:lastInfo[1],y:lastInfo[2]}}" @click.native="changeone(1)">
+          <i class='iconfont icon-zhizhen-' :style="{'color':Arrcolor[1]}"></i>
           <p>搜索</p>
         </router-link></li>
-        <li><a href="#" @click="changeone(2)">
-          <i class='iconfont icon-dingdan' style="color:#707070"></i>
+        <li><router-link :to="{path:'/'}" @click.native="changeone(2)">
+          <i class='iconfont icon-dingdan' :style="{'color':Arrcolor[2]}"></i>
           <p>订单</p>
-        </a></li>
-        <li><a href="#" @click="changeone(3)">
-          <i class='iconfont icon-wode' style="color:#707070"></i>
+        </router-link></li>
+        <li><router-link :to="{path:'/adeliciousfood/bMine'}" @click.native="changeone(3)">
+          <i class='iconfont icon-wode' :style="{'color':Arrcolor[3]}"></i>
           <p>我的</p>
-        </a></li>
+        </router-link></li>
       </ul>
     </div>
 </template>
@@ -30,12 +30,17 @@
         return {
           bottomimgs:["iconfont icon-dingdan-copy","icon-zhizhen","icon-dingdan","iconfont icon-weibiaoti-"],
           lastInfo:[],
-          Arrcolor:[]
+          Arrcolor:['#3190e8','#707070','#707070','#707070'],
         }
       },
       methods:{
         changeone(num){
-
+          this.Arrcolor.splice(0,4);
+          for(let i=0;i<4;i++){
+            this.Arrcolor.push('#707070');
+          }
+          this.Arrcolor[num]='#3190e8';
+          console.log(this.Arrcolor);
         }
       },
       created(){

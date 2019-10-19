@@ -108,8 +108,7 @@
       },
       created(){
         this.lastInfo=[this.$route.query.name,this.$route.query.latitude,this.$route.query.longitude];
-        console.log(this.lastInfo)
-        localStorage.setItem("history3",JSON.stringify(this.lastInfo))
+          localStorage.setItem("history3",JSON.stringify(this.lastInfo))
         this.axios.get('https://elm.cangdu.org/v2/index_entry').then((p)=>{
           let Arr=[],Arr1=[];
           Arr=p.data;
@@ -145,6 +144,9 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
+    position: fixed;
+    top:0;
+    z-index: 5;
   }
   .a1{
     display: inline-block;
