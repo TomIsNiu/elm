@@ -1,14 +1,16 @@
 <template>
     <div id="bbb">
       <div id="bb">
-        <router-link :to="{path:'/'}" id="b1"> < </router-link>
+        <router-link :to="{path:'/'}" id="b1">
+          <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
+        </router-link>
         <span id="b2">我的</span>
       </div>
      <router-link :to="{path:bb}" id="b3">
-       <img src="../assets/touxiang.png" alt=""  style="width: 3rem; margin-top: 1rem;margin-left: 0.2rem">
+       <img :src="aa" alt=""  style="width: 3rem; margin-top: 1rem;margin-left: 0.2rem">
        <span id="bz">{{user}}</span>
        <span id="bs"><img src="../assets/phone.png" alt="" style="width: 1.2rem; margin-top: 2.7rem"><span>暂无绑定手机号</span></span>
-       <span id="by"> > </span>
+       <span id="by"> <i class="iconfont icon-youjian1" style="line-height: 2rem; font-size: 1rem;color: white"></i> </span>
      </router-link>
       <div style="background-color: white">
         <ul class="bclear">
@@ -83,6 +85,7 @@
             username:'',
             hong:3,
             zz:'',
+            aa:require("../assets/touxiang.png")
           }
       },
       methods:{
@@ -96,10 +99,17 @@
               this.hong=person.data.gift_amount;
               this.bb='/bAccount';
               this.zz=1;
+              if(!localStorage.getItem('tou')){
+                this.aa=require("../assets/touxiang.png")
+              }else {
+                this.aa=JSON.parse(localStorage.getItem('tou'));
+              }
+
             }else {
               this.user='登陆/注册';
               this.hong=0;
-              this.bb='/bDeng'
+              this.bb='/bDeng';
+              this.aa=require("../assets/touxiang.png")
             }
 
           })
@@ -108,11 +118,16 @@
     }
 </script>
 <style scoped>
+  @import "//at.alicdn.com/t/font_1453346_v5w9ntjvvt.css";
+  @import "//at.alicdn.com/t/font_1453346_3qip2e2bjeb.css";
   @import "//at.alicdn.com/t/font_1453346_l5qx7kfgl0j.css";
   @import "//at.alicdn.com/t/font_1453346_w1k1r80pqvm.css";
   @import "//at.alicdn.com/t/font_1453346_6wcdrblxoee.css";
   @import "//at.alicdn.com/t/font_1453346_307yuunxmuy.css";
   @import "//at.alicdn.com/t/font_1453346_aueo7koczlj.css";
+  img{
+    border-radius: 50%;
+  }
   a{
     text-decoration: none;
     color: #666;
@@ -121,9 +136,11 @@
     font-size: 1.3rem;
   }
   #b1{
-    text-decoration: none;
-    color: white;
-    font-size: 1.5rem;
+    background-color: #3190e8;
+    z-index: 100;
+    width: 100%;
+    height: 2.5rem;
+    position: relative;
   }
   #bb{
   margin: 0;
@@ -131,14 +148,18 @@
   background-color: dodgerblue;
   height: 2.2rem;
   position: relative;
+    margin-bottom: 0.01rem;
 
 }
   #b2{
-    color: white;
-    font-size: 1.2rem;
-   position: absolute;
-    left: 8rem;
-    top: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50%;
+    color: #fff;
+    text-align: center;
+    font-size: 0.9rem;
   }
   #b3{
     text-decoration: none;
@@ -157,7 +178,6 @@
   }
   #bs{
     font-size: 0.7rem;
-    /*position: relative;*/
   }
   #bs span{
 position: absolute;

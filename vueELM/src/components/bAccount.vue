@@ -109,6 +109,7 @@
             fr.readAsDataURL(file);
             fr.onload = function(e){
               that.pic = e.target.result;
+              localStorage.setItem("tou",JSON.stringify(that.pic))
             } ;
           },
           deng(){
@@ -135,7 +136,13 @@
           if(person.data.username!=''){
             this.user=person.data.username;}
         });
-        this.axios.post('https://elm.cangdu.org/v1/addimg/:type')
+        this.axios.post('https://elm.cangdu.org/v1/addimg/:type');
+
+        if(!localStorage.getItem("tou")){
+          this.pic=require('../assets/tou.png')
+        }else{
+          this.pic=JSON.parse(localStorage.getItem('tou'));
+        }
       }
     }
 </script>

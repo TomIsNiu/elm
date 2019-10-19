@@ -100,7 +100,8 @@
               this.p=true;
             }
           };
-          this.yy()
+          this.yy();
+          this.huoqu();
         }
 
       },

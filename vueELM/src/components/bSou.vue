@@ -37,7 +37,7 @@
           pp:'',
           aa:true,
           input:'',
-          ss:'',
+          nn:'',
           xx:'',
           city:[],
           dt:'https://elm.cangdu.org/v1/pois?type=search&city_id=',
@@ -72,14 +72,12 @@
         this.xie();
         if(this.$route.query.sou==1){
           this.na="cc";
-          this.ss="cc"
+          this.nn="cc"
         }else {
           this.na="bb"
-          this.ss="bb"
+          this.nn="bb"
         }
-
       }
-
     }
 </script>
 
