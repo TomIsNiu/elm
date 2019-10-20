@@ -9,9 +9,16 @@
   <div class="title-head">确认订单</div>
 </div>
       <router-link :to="{path:'/bPath'}" class="address-container">
-        <div class="address-empty-left">
-          <i class="iconfont icon-location"></i>
-          <div class="address">请添加一个收货地址</div>
+        <div class="address-empty-left" >
+          <div class="bbbb" v-if="aa" >
+            <div class="address zzz">姓名:{{nums[num].name}}</div>
+            <div class="address ppp">电话:{{nums[num].phone}}</div>
+          </div>
+          <div class="address" v-if="!aa">请选择地址</div>
+          <div class="cccc">
+            <i class="iconfont icon-location"></i>
+            <div class="address" v-if="aa">{{nums[num].address}}</div>
+          </div>
         </div>
         <span class="address-empty-right">></span>
       </router-link>
@@ -121,12 +128,15 @@
         name: "Cconfirm",
       data() {
         return {
+          aa:'',
           show: false,
           radio: '1',
           con:"",
           pro:"",
           lastInfo:[],
           cartInfo:[],
+          num:'',
+          nums:[]
         }
       },
 
@@ -161,6 +171,13 @@
           } else{
             this.pro="不需要发票"
           }
+        if(localStorage.getItem('numbers')){
+          this.num=JSON.parse(localStorage.getItem('numbers'));
+          this.nums=JSON.parse(localStorage.getItem('dizhi'));
+          this.aa=true;
+        }else{
+          this.aa=false;
+        }
 
           }
 
@@ -220,7 +237,24 @@
   }
   .address-empty-left{
     display: flex;
+    flex-wrap: wrap;
+    height: 3rem;
+    width: 100%;
     align-items: center;
+    position: relative;
+  }
+  .bbbb{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 0.9rem;
+  }
+  .cccc{
+    display: flex;
+    margin: 0.2rem 0;
+    flex-wrap: nowrap;
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
   .icon-location{
     width: .8rem;
