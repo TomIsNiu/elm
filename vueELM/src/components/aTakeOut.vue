@@ -3,7 +3,7 @@
       <div class="header">
         <a href="#" class="a1"><img src="../assets/sousuo.png" alt=""></a>
         <p>{{diquInfo.name}}</p>
-        <a href="#" class="a2" @click="huantu"><img src="../assets/touxinag.png" alt=""></a>
+        <a href="#" class="a2"><img src="../assets/touxinag.png" alt=""></a>
       </div>
       <div class="swiper-container foodsort">
         <div class="swiper-wrapper">
@@ -95,11 +95,6 @@
           shopListInfo:[],
           imgUrl:'https://elm.cangdu.org/img/'
         }
-      },
-      methods:{
-          huantu(){
-            this.$router.push({path:'/adeliciousfood/bMine'})
-          }
       },
       mounted(){
         var mySwiper = new Swiper ('.swiper-container', {

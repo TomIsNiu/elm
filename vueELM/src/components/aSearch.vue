@@ -19,7 +19,7 @@
           </div>
           <button @click="removeData(i)">删除</button>
         </li>
-        <h1 @click.native="deleteAll">清空搜索历史</h1>
+        <h1 @click="deleteAll">清空搜索历史</h1>
       </ul>
       <ul class="searchend" v-show="!change">
         没有搜到结果
@@ -47,6 +47,7 @@
         },
         deleteAll(){
           localStorage.removeItem("history1");
+          console.log(1)
           this.change=false;
         },
         huoquInfo(){

@@ -9,17 +9,9 @@
   <div class="title-head">确认订单</div>
 </div>
       <router-link :to="{path:'/bPath'}" class="address-container">
-        <div class="address-empty-left" >
-          <div class="bbbb" v-if="aa" >
-          <div class="address zzz">姓名:{{nums[num].name}}</div>
-          <div class="address ppp">电话:{{nums[num].phone}}</div>
-          </div>
-          <div class="address" v-if="!aa">请选择地址</div>
-          <div class="cccc">
+        <div class="address-empty-left">
           <i class="iconfont icon-location"></i>
-          <div class="address" v-if="aa">{{nums[num].address}}</div>
-          </div>
-
+          <div class="address">请添加一个收货地址</div>
         </div>
         <span class="address-empty-right">></span>
       </router-link>
@@ -64,15 +56,15 @@
       </div>
       <div class="food-list">
         <div class="header">
-          <img src="../../assets/Cma.jpg" alt="">
-          <span>北京烤鸭</span>
+          <img :src=lastInfo[2] alt="">
+          <span>{{lastInfo[1]}}</span>
         </div>
         <ul>
-          <li class="food-item">
-            <p class="food-name">123</p>
+          <li class="food-item" v-for="(v,i) in cartInfo" :key="i">
+            <p class="food-name">{{v[0]}}</p>
             <div class="num-price">
-              <span>x1</span>
-              <span>¥20</span>
+              <span>x{{v[2]}}</span>
+              <span>¥{{v[1]}}</span>
             </div>
           </li>
         </ul>
@@ -80,7 +72,7 @@
           <p class="food-name">餐盒</p>
           <div class="num-price">
             <span></span>
-            <span>¥ 10919</span>
+            <span>¥ 2</span>
           </div>
         </div>
         <div class="food-item">
@@ -91,9 +83,9 @@
           </div>
         </div>
         <div class="food-item">
-          <p class="food-name">订单 ¥10943</p>
+          <p class="food-name">订单 ¥{{addmoney()}}</p>
           <div class="num-price">
-            <span>待支付<br/> ¥10943</span>
+            <span>待支付<br/> ¥{{addmoney()+2+4}}</span>
           </div>
         </div>
 
@@ -115,7 +107,7 @@
         </router-link>
       </div>
       <div class="confrim_order">
-      <p>待支付 <span> ¥11352</span></p>
+      <p>待支付 <span> ¥{{addmoney()+2+4}}</span></p>
       <p @click="sss">确认下单</p>
       </div>
     </div>
@@ -129,26 +121,34 @@
         name: "Cconfirm",
       data() {
         return {
-          aa:'',
           show: false,
           radio: '1',
           con:"",
           pro:"",
-          num:'',
-          nums:[]
+          lastInfo:[],
+          cartInfo:[],
         }
       },
 
       methods: {
+        addmoney(){
+          let pri=0;
+          for(let i=0;i<this.cartInfo.length;i++){
+            pri+=(this.cartInfo[i][1]-0)*(this.cartInfo[i][2]-0)
+          }
+          return pri;
+        },
         showPopup() {
           this.show = true;
         },
         sss(){
           this.$router.push({path:'/bDing'})
-        },
-
+        }
       },
       created(){
+        this.lastInfo=JSON.parse(localStorage.getItem("history4"));
+        this.cartInfo=JSON.parse(localStorage.getItem("history5"));
+        console.log(this.lastInfo,this.cartInfo);
           if (this.$route.params.cun != null) {
             this.con = JSON.parse(this.$route.params.cun)+this.$route.params.haha,
               console.log(this.con);
@@ -162,18 +162,7 @@
             this.pro="不需要发票"
           }
 
-          if(localStorage.getItem('numbers')){
-            this.num=JSON.parse(localStorage.getItem('numbers'));
-            this.nums=JSON.parse(localStorage.getItem('dizhi'));
-            this.aa=true;
-          }else{
-            this.aa=false;
           }
-          },
-
-
-
-
 
     }
 </script>
@@ -231,24 +220,7 @@
   }
   .address-empty-left{
     display: flex;
-    flex-wrap: wrap;
-    height: 3rem;
-    width: 100%;
     align-items: center;
-    position: relative;
-  }
-  .bbbb{
-    display: flex;
-    flex-wrap: nowrap;
-    margin-bottom: 0.9rem;
-  }
-  .cccc{
-    display: flex;
-    margin: 0.2rem 0;
-    flex-wrap: nowrap;
-    position: absolute;
-    left: 0;
-    bottom: 0;
   }
   .icon-location{
     width: .8rem;
@@ -257,7 +229,6 @@
   }
   .address{
     font-size: .75rem;
-    margin-left: 0.2rem;
     color: #333;
   }
   .address-empty-right{

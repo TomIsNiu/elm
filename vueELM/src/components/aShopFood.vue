@@ -100,13 +100,14 @@
           foodsInfo:[],
           imgUrl:"https://elm.cangdu.org/img/",
           price:[0],
+          name:'',
+          imgurl:'',
         }
       },
       created(){
-        this.id=this.$route.query.id;
+        this.id=JSON.parse(localStorage.getItem("history4"))[0];
         this.axios.get("http://elm.cangdu.org/shopping/v2/menu?restaurant_id="+ this.id).then((p)=>{
           this.foodsInfo=p.data;
-          // console.log(this.foodsInfo);
         })
       },
       methods:{
@@ -118,7 +119,8 @@
         //去结算
         gotoSettlement(){
           if(this.cartInfo.length>0){
-            this.$router.push({path:'/cconfirm'})
+            this.$router.push({path:'/cconfirm'});
+            localStorage.setItem("history5",JSON.stringify(this.cartInfo));
           }
         },
         //计算价格
