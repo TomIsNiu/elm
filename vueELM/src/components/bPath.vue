@@ -1,12 +1,12 @@
 <template>
     <div id="app">
       <div class="bm">
-        <router-link :to="{path:'/cconfirm'}">
+        <router-link :to="{path:'/cconfirm',query:{aa:this.aa}}">
           <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">选择地址</span>
       </div>
-      <ul v-for="(v,i) in sh" :key="i" class="ww">
+      <ul v-for="(v,i) in sh" :key="i" class="ww" @click="ggg(i)" v-if="ss">
         <div class="cc">
         <li>
           <span>姓名:{{v.name}}</span>&nbsp;&nbsp;
@@ -16,7 +16,7 @@
           <li>电话:{{v.phone}}</li>
         </div>
         <li>地址:{{v.address}}</li>
-        <button class="btt" @click="sss(i)">删除</button>
+        <button class="btt" @click.stop="sss(i)">删除</button>
       </ul>
       <router-link :to="{path: '/bAddress'}" class="bdi">
         <i class="iconfont icon-jia1" style="font-size: 1.3rem"></i>
@@ -31,17 +31,33 @@
       data(){
         return{
           sh:[],
+          ss:'',
+          aa:''
         }
       },
       created(){
-        var ct=JSON.parse(localStorage.getItem('dizhi'));
-        this.sh=ct;
-        console.log(this.shu)
+          if(localStorage.getItem('dizhi')==null){
+            this.ss=false;
+            this.aa=0
+          }else {
+            var ct=JSON.parse(localStorage.getItem('dizhi'));
+            this.sh=ct;
+            console.log(this.sh);
+            this.ss=true;
+            this.aa=1
+          }
+
       },
       methods:{
         sss(index){
           this.sh.splice(index,1);
+          console.log(this.sh);
           localStorage.setItem("dizhi",JSON.stringify(this.sh));
+        },
+        ggg(index){
+          this.$router.push({path:'/cconfirm'});
+          localStorage.setItem("numbers",JSON.stringify(index));
+          console.log(index)
         }
       }
     }

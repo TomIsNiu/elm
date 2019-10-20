@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="bm">
-        <router-link :to="{path:'/'}">
+        <router-link :to="{path:uu}">
         <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem; color: white"></i>
         </router-link>
         <span class="bmi">密码登陆</span>
@@ -43,6 +43,7 @@
         name: "bDeng",
       data() {
         return {
+          uu:'/',
           pwdType: 'password',
           bss:require('../assets/new2.png'),
           yanzheng:'',
@@ -51,7 +52,8 @@
           password:'',
           captcha_code:'',
           name:'',
-          aa:''
+          aa:'',
+          ll:''
         }
       },
       methods: {
@@ -102,13 +104,18 @@
           };
           this.yy();
           this.huoqu();
-        }
+        },
 
       },
       created(){
         this.axios.post('https://elm.cangdu.org/v1/captchas').then((person)=>{
           this.yanzheng=person.data.code;
         });
+       if(this.$route.query.number==1){
+         this.uu='/adeliciousfood/bMine'
+       }else {
+         this.uu='/'
+       }
 
       }
     }

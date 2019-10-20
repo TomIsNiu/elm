@@ -1,7 +1,7 @@
 <template>
     <div class="app">
       <div class="bm">
-        <router-link :to="{name:ss}">
+        <router-link :to="{name:nn}">
           <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span class="bmi">搜索地址</span>

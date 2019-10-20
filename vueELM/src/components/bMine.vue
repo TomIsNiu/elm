@@ -1,12 +1,12 @@
 <template>
     <div id="bbb">
       <div id="bb">
-        <router-link :to="{path:'/'}" id="b1">
+        <router-link :to="{path:'/adeliciousfood/atakeout'}" id="b1">
           <i class="iconfont icon-zuojian" style="line-height: 2.5rem; font-size: 1rem;color: white"></i>
         </router-link>
         <span id="b2">我的</span>
       </div>
-     <router-link :to="{path:bb}" id="b3">
+     <router-link :to="{path:bb, query:{number:this.zz}}" id="b3">
        <img :src="aa" alt=""  style="width: 3rem; margin-top: 1rem;margin-left: 0.2rem">
        <span id="bz">{{user}}</span>
        <span id="bs"><img src="../assets/phone.png" alt="" style="width: 1.2rem; margin-top: 2.7rem"><span>暂无绑定手机号</span></span>
@@ -79,6 +79,7 @@
         name: "bMine",
       data(){
           return{
+            ww:1,
             bb:'/bDeng',
             user:'登陆/注册',
             pp:'',
