@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="shopsAndevaluate">
-        <router-link :to="{path:'/ashop/ashopfood',query:{id:shopInfo.id}}" @click.native="change1=true" :style="{borderBottom:change1 ? '0.1rem solid #3190e8' : '0.1rem solid white'}">商品</router-link>
+        <router-link :to="{path:'/ashop/ashopfood'}" @click.native="change1=true" :style="{borderBottom:change1 ? '0.1rem solid #3190e8' : '0.1rem solid white'}">商品</router-link>
         <router-link :to="{path:'/ashop/apingjia',query:{id:shopInfo.id}}" @click.native="change1=false" :style="{borderBottom:change1 ? '0.1rem solid white' : '0.1rem solid #3190e8'}">评价</router-link>
       </div>
       <router-view></router-view>
@@ -44,16 +44,17 @@
           lastInfo:[],
           shopInfo:[],
           imgUrl:"https://elm.cangdu.org/img/",
+          Arr:[],
         }
-      },
-      methods:{
-
       },
       created(){
           this.lastInfo=[this.$route.query.id,this.$route.query.latitude,this.$route.query.longitude];
           this.axios.get("http://elm.cangdu.org/shopping/restaurant/" + this.lastInfo[0] + "?latitude=" + this.lastInfo[1] + "&longitude=" + this.lastInfo[2] + "&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics").then((p)=>{
             this.shopInfo=p.data;
-            // console.log(this.shopInfo)
+            console.log(this.shopInfo);
+            this.imgUrl=this.imgUrl+this.shopInfo.image_path;
+            this.Arr=[this.shopInfo.id,this.shopInfo.name,this.imgUrl];
+              localStorage.setItem("history4",JSON.stringify(this.Arr));
             if(this.shopInfo.activities.length==1){
               this.actInfo[0]=this.shopInfo.activities[0].icon_name;
               this.actInfo[1]=this.shopInfo.activities[0].description;
